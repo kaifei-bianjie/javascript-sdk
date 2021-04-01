@@ -49,7 +49,8 @@ class Swap {
     amount: Coin[],
     expectedIncome: string,
     heightSpan: number,
-    crossChain: boolean
+    crossChain: boolean,
+    offline=false
   ) {
     checkCoins(amount)
     const htltMsg = {
@@ -84,7 +85,12 @@ class Swap {
       signHTLTMsg,
       from
     )
-    return this._bncClient._broadcastDelegate(signedTx)
+    if (offline) {
+      return signedTx;
+    }else{
+        return this._bncClient._broadcastDelegate(signedTx)
+    }
+    return signedTx;
   }
 
   /**
