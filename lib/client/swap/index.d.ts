@@ -24,7 +24,7 @@ declare class Swap {
      * @param {boolean} crossChain
      * @returns {Promise}  resolves with response (success or fail)
      */
-    HTLT(from: string, recipient: string, recipientOtherChain: string, senderOtherChain: string, randomNumberHash: string, timestamp: number, amount: Coin[], expectedIncome: string, heightSpan: number, crossChain: boolean): Promise<{
+    HTLT(from: string, recipient: string, recipientOtherChain: string, senderOtherChain: string, randomNumberHash: string, timestamp: number, amount: Coin[], expectedIncome: string, heightSpan: number, crossChain: boolean, offline?: boolean): Promise<import("../..").Transaction | {
         result: any;
         status: number;
     }>;
