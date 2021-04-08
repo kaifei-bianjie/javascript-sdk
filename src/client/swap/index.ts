@@ -50,7 +50,8 @@ class Swap {
     expectedIncome: string,
     heightSpan: number,
     crossChain: boolean,
-    offline=false
+    memo = '',
+    noBroadcast = false
   ) {
     checkCoins(amount)
     const htltMsg = {
@@ -83,9 +84,11 @@ class Swap {
     const signedTx = await this._bncClient._prepareTransaction(
       htltMsg,
       signHTLTMsg,
-      from
+      from,
+      null,
+      memo
     )
-    if (offline) {
+    if (noBroadcast) {
       return signedTx;
     }else{
         return this._bncClient._broadcastDelegate(signedTx)
